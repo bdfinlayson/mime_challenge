@@ -3,6 +3,7 @@ require_relative 'sequencer'
 
 class SequencerTest < Minitest::Test
   def test_no_jobs_returns_empty_sequence
+    assert_equal '', Sequencer.new.perform
   end
 
   def test_single_job_with_no_dependencies_returns_the_job
