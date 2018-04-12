@@ -27,5 +27,9 @@ class SequencerTest < Minitest::Test
   end
 
   def test_jobs_with_circular_dependency_raises_error
+    error = assert_raises(RuntimeError) do
+      Sequencer.new({ 'a' => nil, 'b' => 'c', 'c' => 'f', 'd' => 'a', 'e' => nil, 'f' => 'b' }).perform
+    end
+    assert_equal 'Jobs cannot have circular dependencies', error.message
   end
 end

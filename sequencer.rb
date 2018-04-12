@@ -10,6 +10,7 @@ class Sequencer
       raise "Jobs cannot depend on themselves" if child == parent
       parent_index = sequence.index(parent) if parent
       child_index = sequence.index(child) if child
+      raise "Jobs cannot have circular dependencies" if parent_index && child_index
       if !child_index && child
         sequence.insert parent_index.to_i + 1, child
       end
