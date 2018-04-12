@@ -5,6 +5,7 @@ class Sequencer
   end
 
   def perform
+    @sequence = @jobs.to_a
     @sequence.join
   end
 end
