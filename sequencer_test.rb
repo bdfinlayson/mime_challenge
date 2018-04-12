@@ -16,6 +16,7 @@ class SequencerTest < Minitest::Test
 
   def test_multiple_jobs_with_dependencies_and_order
     assert_equal 'cba', Sequencer.new({ 'a' => nil, 'b' => 'c', 'c' => nil }).perform
+    assert_equal 'fcbead', Sequencer.new({ 'a' => nil, 'b' => 'c', 'c' => 'f', 'd' => 'a', 'e' => 'b', 'f' => nil }).perform
   end
 
   def test_jobs_cannot_require_self
