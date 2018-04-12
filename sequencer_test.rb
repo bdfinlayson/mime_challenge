@@ -11,6 +11,7 @@ class SequencerTest < Minitest::Test
   end
 
   def test_multiple_jobs_with_no_dependencies_or_order
+    assert_equal 'abc', Sequencer.new({ 'a' => nil, 'b' => nil, 'c' => nil }).perform
   end
 
   def test_multiple_jobs_with_dependencies_and_order
