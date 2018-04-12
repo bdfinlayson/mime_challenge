@@ -20,6 +20,10 @@ class SequencerTest < Minitest::Test
   end
 
   def test_jobs_cannot_require_self
+    error = assert_raises(RuntimeError) do
+      Sequencer.new({ 'a' => nil, 'b' => nil, 'c' => 'c' }).perform
+    end
+    assert_equal 'Jobs cannot depend on themselves', error.message
   end
 
   def test_jobs_with_circular_dependency_raises_error

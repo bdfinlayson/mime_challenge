@@ -7,6 +7,7 @@ class Sequencer
   def perform
     sequence = []
     @jobs.each do |child, parent|
+      raise "Jobs cannot depend on themselves" if child == parent
       parent_index = sequence.index(parent) if parent
       child_index = sequence.index(child) if child
       if !child_index && child
